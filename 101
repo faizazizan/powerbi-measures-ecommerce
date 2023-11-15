@@ -1,0 +1,66 @@
+/// Changes variable information according to your tables.
+
+
+// Average Order Value by Country:
+
+Average Order Value by Country = AVERAGEX(VALUES('Geography'[Country]), [Total Sales] / [Total Orders])
+
+//Sales By Region
+
+Sales by Region = SUMX(RELATEDTABLE('Geography'), [Total Sales])
+
+//Customer Retention Rate
+
+Customer Retention Rate = DIVIDE(CALCULATE([Total Customers] - [New Customers]), [Total Customers])
+
+//New Customers
+
+New Customers = CALCULATE(DISTINCTCOUNT('Sales'[CustomerID]), 'Date'[Date].[Year] = MAX('Date'[Date].[Year]))
+
+
+//Rolling Average Sales
+
+Rolling Average Sales = AVERAGEX(FILTER(ALL('Date'), 'Date'[Date] > MAX('Date'[Date])-30), [Total Sales])
+
+// Year to Date Sales
+
+YTD Sales = TOTALYTD([Total Sales], 'Date'[Date])
+
+// Monthly Sales
+
+Monthly Sales = CALCULATE([Total Sales], 'Date'[Date])
+
+// Product Revenue Share
+
+Product Revenue Share = DIVIDE([Total Sales], [Total Sales], BLANK()) -- for each product
+
+// Profit Margin
+
+Profit Margin = DIVIDE([Total Profit], [Total Sales], 0)
+
+// Top Selling Products
+
+Top Selling Products = TOPN(10, VALUES('Products'[ProductName]), [Total Sales])
+
+// Sales Growth:
+
+Sales Growth = (Total Sales - CALCULATE([Total Sales], LASTYEAR('Date'[Date]))) / CALCULATE([Total Sales], LASTYEAR('Date'[Date]))
+
+//Average Units Sold:
+
+Average Units Sold = AVERAGE('Sales'[Quantity])
+
+//Total Units Sold
+
+Total Units Sold = SUM('Sales'[Quantity])
+
+//Average Sales
+
+Average Sales = AVERAGE('Sales'[SalesAmount])
+
+//Total Sales
+
+Total Sales = SUM('Sales'[SalesAmount])
+
+
+
