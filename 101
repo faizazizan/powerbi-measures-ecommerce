@@ -62,5 +62,25 @@ Average Sales = AVERAGE('Sales'[SalesAmount])
 
 Total Sales = SUM('Sales'[SalesAmount])
 
+// Marketing ROI
+
+Marketing ROI = DIVIDE(([Total Sales] - [Marketing Expenses]), [Marketing Expenses]) * 100
+
+// Sales By Channel
+
+Sales by Channel = CALCULATE([Total Sales], ALLEXCEPT('Channels', 'Channels'[ChannelName]))
+
+// Lead to Customer Rate
+
+Lead-to-Customer Rate = DIVIDE([Number of Customers], [Number of Leads]) * 100
+
+// Conversion Rate
+
+Conversion Rate = DIVIDE([Number of Conversions], [Number of Visitors]) * 100
+
+// AOV
+
+Average Order Value = DIVIDE([Total Sales], [Total Orders])
+
 
 
